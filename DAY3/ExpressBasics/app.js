@@ -20,6 +20,21 @@ app.get("/products", (req, res) => {
   res.json(products);
 });
 
+app.get("/products/:id", (req, res) => {
+  // let id = req.params.id;
+  let id = +req.params.id; // fetching parameter from the url
+  var products = [
+    { id: 1, title: "MacBookPro" },
+    { id: 2, title: "Laptop" },
+  ];
+  let theProduct = products.find(p => p.id == id);
+  console.log(theProduct);
+  res.json(theProduct);
+});
+app.post("/newproduct", (req, res) => {
+  res.json({ msg: "New Product endpoint hit !" });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
