@@ -1,7 +1,7 @@
 const http = require("http"); // built in
 const fs = require("fs");
 const server = http.createServer((req, res) => {
-  if (req.url == "/") {
+  if (req.url == "/" && req.method == "GET") {
     //   fs.readFile("Index.html", (err, dataFromTheFile) => {
     //     res.writeHead(200, { "Content-Type": "text/html" });
     //     res.end(dataFromTheFile);
