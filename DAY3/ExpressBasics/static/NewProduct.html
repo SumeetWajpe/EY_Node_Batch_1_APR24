@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    />
+    <script>
+      function AddNewProduct(e) {
+        e.preventDefault();
+        const id = document.getElementById("txtProductId").value;
+        const title = document.getElementById("txtProductTitle").value;
+
+        fetch("http://localhost:3000/products/newproduct", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id, title }),
+        })
+          .then(res => res.json())
+          .then(message => console.log(message.msg));
+      }
+    </script>
+  </head>
+  <body class="container">
+    <header>
+      <h1>New Product</h1>
+    </header>
+    <main>
+      <div class="col-md-4">
+        <form onsubmit="AddNewProduct(event)">
+          <div class="row">
+            <label for="txtProductId">Id :</label>
+            <input type="text" id="txtProductId" />
+          </div>
+          <div class="row">
+            <label for="txtProductTitle">Title :</label>
+            <input type="text" id="txtProductTitle" />
+          </div>
+
+          <button class="btn btn-primary my-1">Add New Product</button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
