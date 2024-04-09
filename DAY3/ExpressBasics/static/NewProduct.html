@@ -22,7 +22,10 @@
           body: JSON.stringify({ id, title }),
         })
           .then(res => res.json())
-          .then(message => console.log(message.msg));
+          .then(message => {
+            // alert(message.msg);
+            window.location.href = "/";
+          });
       }
     </script>
   </head>

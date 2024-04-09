@@ -14,6 +14,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/newproduct", (req, res) => {
-  res.json({ msg: "New Product endpoint hit !" });
+  // console.log(req.body);
+  let newProduct = req.body;
+  products.push(newProduct);
+  res.json({ msg: `${newProduct.title} added successfully !` });
 });
 module.exports = router;
