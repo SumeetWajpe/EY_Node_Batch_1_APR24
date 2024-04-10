@@ -9,9 +9,20 @@ async function GetProducts() {
   }
 }
 
+async function DeleteProductFromServer(id) {
+  let res = await fetch("http://localhost:3000/products/delete/" + id, {
+    method: "DELETE",
+  });
+
+  let products = await res.json();
+  if (products.length) {
+    document.getElementById(id).remove(); // remove from DOM !
+  }
+}
+
 function DisplayProductCard(product) {
   let productCard = `
-  <div class="col-md-3 my-1">
+  <div class="col-md-3 my-1" id=${product.id}>
     <div class="card">
   <img src=${product.imageUrl} width="200px" height="150px" class="card-img-top" alt=${product.title}/>
   <div class="card-body">
@@ -20,6 +31,8 @@ function DisplayProductCard(product) {
     <p class="card-text">${product.rating}</p>
 
     <button  class="btn btn-primary">${product.likes}</button>
+    <button  class="btn btn-danger" onclick="DeleteProductFromServer(${product.id})">X</button>
+
   </div>
 </div>
 </div>

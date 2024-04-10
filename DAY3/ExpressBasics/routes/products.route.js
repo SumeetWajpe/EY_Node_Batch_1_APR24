@@ -19,4 +19,11 @@ router.post("/newproduct", (req, res) => {
   products.push(newProduct);
   res.json({ msg: `${newProduct.title} added successfully !` });
 });
+
+router.delete("/delete/:id", (req, res) => {
+  let { id } = req.params;
+  products = products.filter(p => p.id !== +id);
+  res.json(products);
+});
+
 module.exports = router;
