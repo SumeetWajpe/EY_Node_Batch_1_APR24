@@ -16,9 +16,7 @@ app.get("/", (req, res) => {
   res.sendFile("Index.html", { root: __dirname });
 });
 
-app.get("/pugview", (req, res) => {
-  res.render("index", { message: "Using Pug !" });
-});
+
 
 // app.get("/script.js", (req, res) => {
 //   res.sendFile("script.js", { root: __dirname });

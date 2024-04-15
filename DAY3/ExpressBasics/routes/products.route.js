@@ -13,6 +13,11 @@ router.get("/:id", (req, res) => {
   res.json(theProduct);
 });
 
+router.get("/details/:id", (req, res) => {
+  let id = +req.params.id;
+  let product = products.find(p => p.id == id);
+  res.render("productdetails", { product });
+});
 router.post("/newproduct", (req, res) => {
   // console.log(req.body);
   let newProduct = req.body;

@@ -1,0 +1,10 @@
+extends layout 
+block content 
+
+    div(class="row")
+        div(class="col-md-9")
+            img(src=product.imageUrl width="100%")
+        div(class="col-md-3")
+            h2= product.title
+            p= product.price 
+            p= product.description
