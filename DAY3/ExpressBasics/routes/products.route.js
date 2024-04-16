@@ -6,17 +6,17 @@ router.get("/", async (req, res) => {
   res.json(products);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   // let id = req.params.id;
   let id = +req.params.id; // fetching parameter from the url
 
-  let theProduct = products.find(p => p.id == id);
+  let theProduct = await ProductsModel.findOne({ id });
   res.json(theProduct);
 });
 
-router.get("/details/:id", (req, res) => {
+router.get("/details/:id", async (req, res) => {
   let id = +req.params.id;
-  let product = products.find(p => p.id == id);
+  let product = await ProductsModel.findOne({ id });
   res.render("productdetails", { product });
 });
 router.post("/newproduct", (req, res) => {
