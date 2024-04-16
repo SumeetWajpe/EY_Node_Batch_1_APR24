@@ -21,15 +21,18 @@ router.get("/details/:id", async (req, res) => {
 });
 router.post("/newproduct", (req, res) => {
   // console.log(req.body);
-  let newProduct = req.body;
-  products.push(newProduct);
+  let newProductFromClient = req.body;
+
+  let newProduct = new ProductsModel({ ...newProductFromClient });
+  newProduct.save();
+
   res.json({ msg: `${newProduct.title} added successfully !` });
 });
 
-router.delete("/delete/:id", (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
   let { id } = req.params;
-  products = products.filter(p => p.id !== +id);
-  res.json(products);
+  await ProductsModel.findOneAndDelete({ id });
+  res.json({ msg: "Product deleted successfully", status: true });
 });
 
 module.exports = router;

@@ -14,8 +14,8 @@ async function DeleteProductFromServer(id) {
     method: "DELETE",
   });
 
-  let products = await res.json();
-  if (products.length) {
+  let deletedStatus = await res.json();
+  if (deletedStatus.status) {
     document.getElementById(id).remove(); // remove from DOM !
   }
 }
