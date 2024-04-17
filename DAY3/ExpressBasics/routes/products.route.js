@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 let ProductsModel = require("../models/product.model");
-router.get("/", async (req, res) => {
+const { isAuthenticated } = require("../middlewares/auth.middleware");
+router.get("/", isAuthenticated, async (req, res) => {
   const products = await ProductsModel.find({}); // db
   res.json(products);
 });
